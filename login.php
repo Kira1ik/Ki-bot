@@ -30,7 +30,7 @@ $ui = UI;
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Logg inn - <?= htmlspecialchars(AGENT_NAME) ?></title>
     
     <!-- Скрипт для темы (без мерцания) -->
@@ -197,6 +197,44 @@ $ui = UI;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+        }
+
+        /* === АДАПТИВ ДЛЯ ТЕЛЕФОНОВ === */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1rem;
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+            .login-card {
+                padding: 2rem 1.5rem;
+                border-radius: 16px;
+            }
+            .login-header {
+                margin-bottom: 1.5rem;
+            }
+            .login-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+                border-radius: 16px;
+                margin-bottom: 1rem;
+            }
+            .login-title {
+                font-size: 1.5rem;
+            }
+            .login-subtitle {
+                font-size: 0.85rem;
+            }
+            .form-input {
+                padding: 0.85rem;
+                font-size: 16px; /* Предотвращает авто-зум на iPhone */
+            }
+            .login-button {
+                padding: 0.85rem;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
