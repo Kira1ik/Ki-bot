@@ -4,7 +4,7 @@ StudieBuddy er en KI-chatbot med flere agenter, utviklet i PHP og JavaScript med
 
 Prosjektet er utviklet i faget Informasjonsteknologi og medieproduksjon
 
-**Publisert chatbot:** `https://zhasli09.imkatta.no/Katta_AI_Chat2/`
+**Publisert chatbot:** `https://zhasli09.imkatta.no/KI-bot/login.php`
 
 ## Formål og målgruppe
 Chatboten er laget for elever på Vg1–Vg3 som trenger støtte til lekser, prøveforberedelser og studieteknikk. Formålet er at eleven skal forstå stoffet, ikke bare få svaret.
