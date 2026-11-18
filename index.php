@@ -11,7 +11,7 @@ $ui = UI;
 <html lang="<?= $currentLang ?>">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title><?= htmlspecialchars(AGENT_NAME, ENT_QUOTES, 'UTF-8') ?></title>
 <script>
 (function(){
@@ -67,6 +67,10 @@ window.MathJax = {
         <p class="header__subtitle"><?= htmlspecialchars(AGENT_DESCRIPTION) ?></p>
       </div>
       <div class="header__actions">
+          <!-- НОВАЯ КНОПКА: Свернуть/Развернуть панель настроек -->
+          <button id="settingsToggle" class="theme-toggle" aria-label="Innstillinger" title="Vis/skjul innstillinger">
+              <i class="fas fa-sliders-h"></i>
+          </button>
           <button id="themeToggle" class="theme-toggle" aria-label="Theme">
               <i class="fas fa-moon" id="themeIcon"></i>
           </button>
@@ -75,7 +79,7 @@ window.MathJax = {
       </div>
     </header>
 
-    <section class="chat-toolbar">
+    <section class="chat-toolbar" id="chatToolbar">
       <form method="get" class="toolbar-form" id="settingsForm">
         <label><?= $ui['agent'] ?>
           <select name="agent" id="agentSelect">
@@ -100,7 +104,6 @@ window.MathJax = {
         </label>
         <button type="submit" class="toolbar-button"><?= $ui['use'] ?></button>
       </form>
-      <!-- Кнопка "New chat" отсюда удалена, так как она есть слева в меню -->
     </section>
 
     <main class="chat" id="chat" aria-live="polite">
@@ -131,7 +134,7 @@ let currentChatId = null;
 let history = [];
 let busy = false;
 
-// === THEME & SIDEBAR ===
+// === THEME & SIDEBAR & TOOLBAR ===
 const htmlEl = document.documentElement;
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
@@ -145,6 +148,13 @@ themeToggle.addEventListener('click', () => {
 
 const sidebar = document.getElementById('sidebar');
 document.getElementById('sidebarToggle').addEventListener('click', () => sidebar.classList.toggle('open'));
+
+// Сворачивание панели настроек
+const settingsToggle = document.getElementById('settingsToggle');
+const chatToolbar = document.getElementById('chatToolbar');
+settingsToggle.addEventListener('click', () => {
+    chatToolbar.classList.toggle('collapsed');
+});
 
 // === CHAT ===
 const chat = document.getElementById('chat');
@@ -317,7 +327,6 @@ input.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
 });
 
-// Слушатель для кнопки в сайдбаре
 document.getElementById('sidebarNewChatBtn').addEventListener('click', startNewChat);
 
 form.addEventListener('submit', async e => {

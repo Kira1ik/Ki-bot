@@ -56,17 +56,23 @@ $ui = UI;
             --agent-ai-bubble: <?= $colors['ai-bubble'] ?>;
         }
 
+        /* Делаем body флекс-контейнером для идеального центрирования */
         body {
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--bg-body);
+            min-height: 100vh;
+            min-height: 100dvh; /* Для мобильных браузеров */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .login-container {
             width: 100%;
             max-width: 420px;
-            padding: 2rem;
             z-index: 10;
         }
         
@@ -201,11 +207,8 @@ $ui = UI;
 
         /* === АДАПТИВ ДЛЯ ТЕЛЕФОНОВ === */
         @media (max-width: 480px) {
-            .login-container {
-                padding: 1rem;
-                height: 100%;
-                display: flex;
-                align-items: center;
+            body {
+                padding: 12px; 
             }
             .login-card {
                 padding: 2rem 1.5rem;
